@@ -1,0 +1,8 @@
+The attributes for the <ellipse> SVG element are as follows:
+cx: Specifies the x-coordinate of the center of the ellipse. The value is a number representing a horizontal position on the SVG canvas.
+cy: Specifies the y-coordinate of the center of the ellipse. The value is a number representing a vertical position on the SVG canvas.
+rx: Specifies the horizontal radius (semimajor axis) of the ellipse. The value is a positive number representing the distance from the center to the farthest point along the horizontal axis.
+ry: Specifies the vertical radius (semiminor axis) of the ellipse. The value is a positive number representing the distance from the center to the farthest point along the vertical axis.
+fill: Defines the fill color of the ellipse. This attribute sets the color of the interior of the ellipse. It can accept a color value in various formats (e.g., named color, hexadecimal RGB value, RGB or RGBA notation).
+stroke: Defines the stroke color of the ellipse's outline. This attribute sets the color of the ellipse's border. Like the fill attribute, it can accept a color value in different formats.
+stroke-width: Specifies the width of the stroke (outline) of the ellipse. The value is a number representing the stroke's width in user coordinates. A larger value results in a thicker stroke.

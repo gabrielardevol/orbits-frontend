@@ -1,0 +1,14 @@
+.ellipse {
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.orbits-container {
+  position: relative;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+}
