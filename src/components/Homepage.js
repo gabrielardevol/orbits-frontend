@@ -5,16 +5,17 @@ const randomIntegers = Array.from({ length: 30 }, () => parseInt(Math.random() *
 
 
 const ellipseToPath = (props) => {
-  const cx = vwToPixels(150);
-  const cy = vhToPixels(150);
-  const rx = vwToPixels(15 + props.id*6);
-  const ry = vhToPixels(15 + props.id*6);
+  const cx = vwToPixels(50);
+  const cy = vhToPixels(50);
+
+  const rx = vwToPixels(10 + props.id*6);
+  const ry = vhToPixels(10 + props.id*6);
   return `M${cx - rx},${cy} A${rx},${ry} 0 1,0 ${cx + rx},${cy} A${rx},${ry} 0 1,0 ${cx - rx},${cy}`;
 }
 
 const Planet = (props) => {
   return (
-    <g transform={`rotate(${props.rotation} ${1.5*window.innerWidth} ${1.5*window.innerHeight})`}>
+    <g transform={`rotate(${props.rotation} ${0.75*window.innerWidth} ${0.75*window.innerHeight})`}>
       <path id={"motion-path" + props.id} d={ellipseToPath(props)} fill="transparent" stroke="transparent" strokeWidth="8" />
       <circle cx="0" cy="0" r={10 + 3 * Math.abs(randomIntegers[props.id])} fill={props.color}>
         <animateMotion dur={Math.floor(Math.random() * (100 - 70 + 1)) + 30 + "s"} repeatCount="indefinite" begin={Math.floor(Math.random() * (-85 - (-1) + 1)) + (-1)}>
@@ -28,7 +29,7 @@ const Planet = (props) => {
 const Orbit = (props) => {
   return (
     <>
-      <g transform={`rotate(${props.rotation} ${1.5*window.innerWidth} ${1.5*window.innerHeight})`}>
+      <g transform={`rotate(${props.rotation} ${0.75*window.innerWidth} ${0.75*window.innerHeight})`}>
         <path  d={ellipseToPath(props)} fill="transparent" stroke={"black"} strokeWidth="0.4" />
       </g>
     </>
@@ -43,18 +44,13 @@ const System = (props) => {
   const orbitData = props.planetsData
   const scrollRef = useRef("#orbit-window")
 
-  useEffect(() => {
-    const element = scrollRef.current;
-    element.scrollLeft += (element.scrollWidth - window.innerWidth) / 4 ;
-    element.scrollTop += (element.scrollHeight - window.innerHeight) / 4 ;
-  }, []);
 
   return (
-    <div id="orbit-window" ref={scrollRef}  style={{width: "100vw", height: "100vh", overflow: "hidden", overflowY: "scroll", overflowX: "scroll"}}>
-      <div style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", height: "300vh", width: "300vw"}}>
-        <svg width="300vw" height="300vh">
-          {orbitData.map((data, index) => ( <Orbit key={index} id={index+1} color={data} rotation={randomIntegers[index]}/> ))}
-          {orbitData.map((data, index) => ( <Planet key={index} id={index+1} color={data} rotation={randomIntegers[index]}/> ))}
+    <div id="orbit-window" ref={scrollRef}  style={{width: "100vw", height: "100vh", overflow: "hidden"}}>
+      <div style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw"}}>
+        <svg width="100vw" height="100vh">
+          {orbitData.map((data, index) => ( <Orbit key={index} id={index+1} color={data} rotation={randomIntegers[index]/2.5}/> ))}
+          {orbitData.map((data, index) => ( <Planet key={index} id={index+1} color={data} rotation={randomIntegers[index]/2.5}/> ))}
         </svg>
         <div style={{position: 'absolute', width: 'clamp(30px, 20vw, 100px)', height: 'clamp(30px, 20vw, 100px)', backgroundColor: '#FF9FAF', borderRadius: '50%'}}></div>
       </div>
